@@ -1,0 +1,24 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: consumer-user       # 这是该实例注册到eureka服务端的name（这是服务名称，可以有多个相同名称但实例id不同的来做集群）
+
+eureka:
+  client:
+    serviceUrl:
+      # eureka服务器提供的注册地址 参考服务端配置的这个路径（如果是eureka集群最好是向所有的eureka节点都注册以防网络故障）
+      defaultZone: http://eureka:3000/eureka,http://eureka:3001/eureka,http://eureka:3002/eureka
+    # 服务提供者在启动时，会之歌参数是不是正确的的，默认是true，且如果是true就会想EurekaServer发送一个Rest请求
+    register-with-eureka: true
+    # 服务消费者启动时，会检测fetch-with-eureka的值，如果是true，就会从eureka服务器的列表只读备份，
+    # 然后缓存到本地，并且每30s会重新获取并更新数据。生产环境下，我们不需要修改这个值。
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: user-1       # 该实例注册到eureka服务器端的唯一的实例id
+    prefer-ip-address: true   # 是否显示IP地址
+    # eureka客户端多长时间会发送心跳给eureka服务器，表明它仍然活着，默认情况是30s
+    lease-renewal-interval-in-seconds: 10
+    # eureka服务器在接收到实例最后的一次发出的心跳后，需要等待多久才可以将次实例删除，默认为90s
+    lease-expiration-duration-in-seconds: 30

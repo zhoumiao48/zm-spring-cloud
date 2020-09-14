@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eurekaServer3000" />
+        <module name="eurekaServer3002" />
+        <module name="eurekaServer3001" />
+        <module name="goods1" />
+        <module name="eurekaServer1" />
+        <module name="user" />
+        <module name="goods2" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="eurekaServer1" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eurekaServer1" options="-parameters" />
+      <module name="eurekaServer3000" options="-parameters" />
+      <module name="eurekaServer3001" options="-parameters" />
+      <module name="eurekaServer3002" options="-parameters" />
+      <module name="goods1" options="-parameters" />
+      <module name="goods2" options="-parameters" />
+      <module name="user" options="-parameters" />
+      <module name="zm-spring-cloud-parent" options="-parameters" />
+    </option>
+  </component>
+</project>
