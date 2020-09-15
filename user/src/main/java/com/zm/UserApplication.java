@@ -1,7 +1,7 @@
 package com.zm;
 
 import com.netflix.loadbalancer.IRule;
-import com.netflix.loadbalancer.RandomRule;
+import com.zm.rule.ZmRule1;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -23,9 +23,9 @@ public class UserApplication {
         return new RestTemplate();
     }
 
-    // 负载均衡算法切换配置
+    // 负载均衡算法切换配置（这里配置的是RandomRule算法）
     @Bean
     public IRule iRule(){
-        return new RandomRule();
+        return new ZmRule1();
     }
 }

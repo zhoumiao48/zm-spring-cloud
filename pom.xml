@@ -15,6 +15,7 @@
         <module>eurekaServer3000</module>
         <module>eurekaServer3001</module>
         <module>eurekaServer3002</module>
+        <module>order</module>
     </modules>
 
     <parent>
