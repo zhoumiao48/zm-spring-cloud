@@ -25,4 +25,10 @@ public class UserController {
         Object forObject = restTemplate.getForObject("http://provider-goods/getGoods", Object.class);
         return ResponseResult.success("UserApplication调用GoodsApplication成功", forObject);
     }
+
+    @GetMapping("/getMyOrder")
+    public Object getMyOrder(){
+        Object forObject = restTemplate.getForObject("http://provider-order/getOrder", Object.class);
+        return ResponseResult.success("UserApplication通过HTTP调用OrderApplication成功", forObject);
+    }
 }

@@ -47,14 +47,14 @@ public class ZmRule2 extends AbstractLoadBalancerRule {
 
             int index = chooseRandomInt(serverCount);
 
-            /* ------业务1实现：同一服务器连续被选中两次就让他重新随机一次------ */
-            // 判断是否需要跳过
-            if(index == skipIndex){
-                System.out.println("重新随机一次");
+            /* ------业务2实现------ */
+            while(index == skipIndex){
+                System.out.println("index == skipIndex，需要重新随机一次");
                 index = chooseRandomInt(serverCount);
-                // 重置需要清除的下标
-                skipIndex = -1;
             }
+
+            // 此时的index肯定是和skipIndex不同了，充值skipIndex
+            skipIndex = -1;
 
             nowIndex = index;
             if(lastIndex == nowIndex){
@@ -63,7 +63,7 @@ public class ZmRule2 extends AbstractLoadBalancerRule {
 
             // 此次随机操作之后需要将nowIndex的值赋值给lastIndex
             lastIndex = nowIndex;
-            /* ------业务1实现：同一服务器连续被选中两次就让他重新随机一次------ */
+            /* ------业务2实现------ */
 
             server = upList.get(index);
 
