@@ -20,7 +20,7 @@ public class UserController {
     }*/
 
     // 第二种调用方式：服务+接口直接调用goods中的服务：provider-goods（服务名），/getGoods（接口名）
-    @GetMapping("/getUser")
+    @GetMapping("/getMyGoods")
     public Object getUser(){
         Object forObject = restTemplate.getForObject("http://provider-goods/getGoods", Object.class);
         return ResponseResult.success("UserApplication调用GoodsApplication成功", forObject);

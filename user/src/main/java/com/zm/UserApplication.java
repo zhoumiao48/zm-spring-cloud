@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableEurekaClient
-// 负载均衡算法配置方式2：
+// 负载均衡算法配置方式2：给goods服务配置自定义的负载均衡算法，给order服务配置自带的轮训算法
 @RibbonClients({
         @RibbonClient(name = "provider-goods", configuration = GoodsConfig.class),
         @RibbonClient(name = "provider-order", configuration = OrderConfig.class),
@@ -32,7 +32,8 @@ public class UserApplication {
         return new RestTemplate();
     }
 
-    // 负载均衡算法配置方式1：
+    /* 负载均衡算法配置方式1： 如果负载均衡配置的跟UserApplication在同一个目录下，那这个均衡算法对
+     所有的服务全部生效 */
    /* @Bean
     public IRule iRule(){
         return new ZmRule1();
