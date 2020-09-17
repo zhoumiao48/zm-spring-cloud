@@ -1,5 +1,6 @@
 package com.zm.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zm.service.GoodsFeignClient;
 import com.zm.util.ResponseResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,7 @@ public class UserController {
 
     // 第三种调用方式：使用Feign来进行调用（不用使用restTemplate来调用了）。
     @GetMapping("/getMyGoods")
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
     public Object getMyGoods() {
         Object forObject = goodsFeignClient.getGoods();
         return ResponseResult.success("通过Feign调用Goods服务成功", forObject);
@@ -42,5 +44,9 @@ public class UserController {
     public Object getMyOrder() {
         Object forObject = restTemplate.getForObject("http://provider-order/getOrder", Object.class);
         return ResponseResult.success("UserApplication通过HTTP调用OrderApplication成功", forObject);
+    }
+
+    public ResponseResult fallbackMethod(){
+        return ResponseResult.error("服务器暂时出错，请稍后重试。");
     }
 }
