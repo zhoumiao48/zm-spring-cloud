@@ -10,11 +10,13 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.netflix.ribbon.RibbonClients;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableEurekaClient
+@EnableFeignClients
 // 负载均衡算法配置方式2：给goods服务配置自定义的负载均衡算法，给order服务配置自带的轮训算法
 @RibbonClients({
         @RibbonClient(name = "provider-goods", configuration = GoodsConfig.class),
